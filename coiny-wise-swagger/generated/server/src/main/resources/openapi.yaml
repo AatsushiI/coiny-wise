@@ -1,0 +1,209 @@
+openapi: 3.0.2
+info:
+  description: Coiny Wise API
+  title: Coiny Wise API
+  version: 1.0.0
+servers:
+- url: http://localhost/
+tags:
+- name: 会員
+paths:
+  /health:
+    get:
+      description: サーバーの状態を返します。
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_health_response'
+          description: サーバーは正常に動作しています
+      summary: サーバーの状態を返します
+      x-accepts: application/json
+  /users:
+    get:
+      description: |
+        会員一覧の取得
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+          description: ok
+      summary: 会員一覧取得
+      tags:
+      - 会員
+      x-accepts: application/json
+      x-tags:
+      - tag: 会員
+    post:
+      description: |
+        会員の登録を行うことができる。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/UserSignUp'
+      responses:
+        "201":
+          description: 会員登録成功
+      summary: 会員登録
+      tags:
+      - 会員
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: 会員
+  /users/{id}:
+    delete:
+      parameters:
+      - description: 会員ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: No Content
+      summary: 指定IDの会員データ削除
+      tags:
+      - 会員
+      x-accepts: application/json
+      x-tags:
+      - tag: 会員
+    get:
+      parameters:
+      - description: 会員ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ok
+      summary: 会員データ取得
+      tags:
+      - 会員
+      x-accepts: application/json
+      x-tags:
+      - tag: 会員
+    patch:
+      parameters:
+      - description: 会員ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ok
+      summary: 指定IDの会員データ更新
+      tags:
+      - 会員
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: 会員
+components:
+  schemas:
+    get_health_response:
+      description: サーバーの状態のレスポンス
+      example:
+        status: ok
+      properties:
+        status:
+          enum:
+          - ok
+          type: string
+      type: object
+    UserSignUp:
+      description: ユーザ登録のリクエスト
+      properties:
+        email:
+          description: メールアドレス
+          example: test@gmail.com
+          type: string
+        name:
+          description: 会員名
+          example: 山田 太郎
+          type: string
+        nickname:
+          description: ニックネーム
+          example: あっくん
+          type: string
+        password:
+          description: パスワード
+          example: password
+          type: string
+      type: object
+    User:
+      description: ユーザ情報
+      example:
+        name: 山田 太郎
+        nickname: あっくん
+        id: IFHJKASDAOISUFIUEAD
+        email: test@gmail.com
+      properties:
+        id:
+          description: ID
+          example: IFHJKASDAOISUFIUEAD
+          type: string
+        email:
+          description: メールアドレス
+          example: test@gmail.com
+          type: string
+        name:
+          description: 会員名
+          example: 山田 太郎
+          type: string
+        nickname:
+          description: ニックネーム
+          example: あっくん
+          type: string
+      type: object
+    UserList:
+      example:
+        result:
+        - name: 山田 太郎
+          nickname: あっくん
+          id: IFHJKASDAOISUFIUEAD
+          email: test@gmail.com
+        - name: 山田 太郎
+          nickname: あっくん
+          id: IFHJKASDAOISUFIUEAD
+          email: test@gmail.com
+      properties:
+        result:
+          description: 会員データのリスト
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      type: object

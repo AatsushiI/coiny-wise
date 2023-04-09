@@ -1,0 +1,172 @@
+openapi: "3.0.2"
+info:
+  description: Coiny Wise API
+  title: Coiny Wise API
+  version: "1.0.0"
+
+servers:
+  - url: "http://localhost/"
+
+tags:
+  - name: 会員
+
+paths:
+  /health:
+    get:
+      summary: サーバーの状態を返します
+      description: サーバーの状態を返します。
+      responses:
+        "200":
+          description: サーバーは正常に動作しています
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/get_health_response"
+  /users:
+    get:
+      tags:
+        - 会員
+      summary: 会員一覧取得
+      description: |
+        会員一覧の取得
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserList"
+    post:
+      tags:
+        - 会員
+      summary: 会員登録
+      description: |
+        会員の登録を行うことができる。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#components/schemas/UserSignUp"
+      responses:
+        "201":
+          description: 会員登録成功
+  /users/{id}:
+    get:
+      tags:
+        - 会員
+      summary: 会員データ取得
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 会員ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    patch:
+      tags:
+        - 会員
+      summary: 指定IDの会員データ更新
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 会員ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      tags:
+        - 会員
+      summary: 指定IDの会員データ削除
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 会員ID
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+components:
+  schemas:
+    get_health_response:
+      description: サーバーの状態のレスポンス
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+    UserSignUp:
+      description: ユーザ登録のリクエスト
+      type: object
+      properties:
+        email:
+          type: string
+          description: メールアドレス
+          example: test@gmail.com
+        name:
+          type: string
+          description: 会員名
+          example: 山田 太郎
+        nickname:
+          type: string
+          description: ニックネーム
+          example: あっくん
+        password:
+          type: string
+          description: パスワード
+          example: password
+    User:
+      description: ユーザ情報
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          example: IFHJKASDAOISUFIUEAD
+        email:
+          type: string
+          description: メールアドレス
+          example: test@gmail.com
+        name:
+          type: string
+          description: 会員名
+          example: 山田 太郎
+        nickname:
+          type: string
+          description: ニックネーム
+          example: あっくん
+    UserList:
+      type: object
+      properties:
+        result:
+          description: 会員データのリスト
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
