@@ -1,0 +1,6 @@
+{
+  "basePackage": "com.agunus.coinywise",
+  "apiPackage": "com.agunus.coinywise.api",
+  "modelPackage": "com.agunus.coinywise.model",
+  "useRequiredAttribute": true
+}
