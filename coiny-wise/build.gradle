@@ -20,7 +20,14 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	implementation 'org.openapitools:jackson-databind-nullable:0.2.3'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
-	
+
+	// db系
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	implementation 'mysql:mysql-connector-java:8.0.30'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.10'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.10'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

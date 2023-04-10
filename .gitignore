@@ -1,3 +1,6 @@
 .env
 .vscode
 .docker
+.gradle
+build
+.devcontainer/docker/mysql_data/

@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * UserList
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T07:04:38.204816Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T12:56:41.729656Z[Etc/UTC]")
 public class UserList {
 
   @JsonProperty("result")

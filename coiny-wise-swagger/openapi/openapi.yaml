@@ -46,10 +46,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#components/schemas/UserSignUp"
+              $ref: "#/components/schemas/UserSignUp"
       responses:
         "201":
-          description: 会員登録成功
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
   /users/{id}:
     get:
       tags:
