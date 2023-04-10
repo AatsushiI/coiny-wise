@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "bf96748f-c106-4b17-9789-1e948206bcd2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3333/api/user",
+    "url": "http://nginx:80/api/users",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-09T12:44:11.628Z",
+    "modified": "2023-04-09T12:54:32.620Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"test@gmail.com\",\n  \"name\": \"あつし\",\n  \"nickname\": \"あっくん\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "c0bb7ba0-864c-430b-bb48-0b317c27dd30",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3333/api/health",
+    "url": "http://nginx:80/api/health",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-09T12:44:37.701Z",
+    "modified": "2023-04-09T12:54:08.236Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

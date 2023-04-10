@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T07:04:38.204816Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T12:56:41.729656Z[Etc/UTC]")
 @Controller
 @RequestMapping("${openapi.coinyWise.base-path:}")
 public class HealthApiController implements HealthApi {

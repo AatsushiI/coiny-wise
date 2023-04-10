@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "get_health_response", description = "サーバーの状態のレスポンス")
 @JsonTypeName("get_health_response")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T07:04:38.204816Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T12:56:41.729656Z[Etc/UTC]")
 public class GetHealthResponse {
 
   /**

@@ -7,6 +7,7 @@ package com.agunus.coinywise.api;
 
 import com.agunus.coinywise.model.User;
 import com.agunus.coinywise.model.UserList;
+import com.agunus.coinywise.model.UserSignUp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -30,7 +31,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T07:04:38.204816Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-09T12:56:41.729656Z[Etc/UTC]")
 @Validated
 @Tag(name = "users", description = "the users API")
 public interface UsersApi {
@@ -198,25 +199,37 @@ public interface UsersApi {
      * POST /users : 会員登録
      * 会員の登録を行うことができる。 
      *
-     * @param body  (optional)
-     * @return 会員登録成功 (status code 201)
+     * @param userSignUp  (optional)
+     * @return ok (status code 201)
      */
     @Operation(
         operationId = "usersPost",
         summary = "会員登録",
         tags = { "会員" },
         responses = {
-            @ApiResponse(responseCode = "201", description = "会員登録成功")
+            @ApiResponse(responseCode = "201", description = "ok", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/users",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> usersPost(
-        @Parameter(name = "body", description = "") @Valid @RequestBody(required = false) Object body
+    default ResponseEntity<User> usersPost(
+        @Parameter(name = "UserSignUp", description = "") @Valid @RequestBody(required = false) UserSignUp userSignUp
     ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"name\" : \"山田 太郎\", \"nickname\" : \"あっくん\", \"id\" : \"IFHJKASDAOISUFIUEAD\", \"email\" : \"test@gmail.com\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
